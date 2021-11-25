@@ -4,5 +4,18 @@
     "header.en":"анг",
     "header.login":"Логин",
     "header.registration":"Регистрация",
-    "header.logout":"Выйти"
+    "header.logout":"Выйти",
+    "loginform.title":"Вход",
+    "loginform.password":"Пароль",
+    "loginform.emailaddress":"Email адрес",
+    "loginform.signin":"Войти",
+    "loginform.forgotpassword":"Забыли пароль?",
+    "loginform.signup":"Регистрация",
+    "registrationform.title":"Регистрация",
+    "registrationform.login":"Логин",
+    "registrationform.email":"Email",
+    "registrationform.password":"Пароль",
+    "registrationform.repeatpassword":"Повторите пароль",
+    "registrationform.signup":"Регистрация",
+    "registrationform.signin":"Войти"
 }

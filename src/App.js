@@ -14,21 +14,31 @@ import { IntlProvider } from "react-intl";
 import Russian from "./languages/ru.json";
 import English from "./languages/en.json";
 import { observer } from "mobx-react-lite";
-
+import CubeLoader from "./components/loaders/CubeLoader";
+import UserProfile from "./components/user/UserProfile";
 function App() {
   const { store } = useContext(Context);
   
   const [language, setLanguage] = useState(store.locale === "ru-RU" ? Russian : English);
 
   useEffect(() => {
-    console.log('test1')
+    if (store) {
+      if (localStorage.getItem("token")) {
+        store.checkAuth();
+      } 
+    }
+  }, [store]);
+
+  useEffect(() => {
     if (store.locale === "ru-RU") setLanguage(Russian);
     else setLanguage(English);
   }, [store.locale]);
-
-
-  console.log('test')
   
+  if (store.isLoading) {
+    console.log('loading')
+    return <CubeLoader></CubeLoader>;
+  }
+
   return (
     <IntlProvider locale={store.locale} messages={language}>
       <Router>
@@ -44,6 +54,7 @@ function App() {
               <Route exact path="/" element={<MainPage/>}/>
               <Route exact path="/login" element={<LoginForm/>}/>
               <Route exact path="/registration" element={<RegistrationForm/>}/>
+              <Route exact path="/profile/:id" element={<UserProfile/>}></Route>
             </Routes>
         </Paper>
       </Router>

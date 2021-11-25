@@ -9,6 +9,8 @@ export default class Store {
   email = "";
   id = "";
   locale = "ru-RU";
+  refreshed = false;
+  isLoading = false;
   constructor() {
     makeAutoObservable(this);
     if (localStorage.getItem("locale")) {
@@ -20,7 +22,6 @@ export default class Store {
     if (this.locale === "ru-RU") this.locale = "en-US";
     else this.locale = "ru-RU";
     localStorage.setItem("locale", this.locale);
-    console.log(this.locale)
   }
   setAuth(isAuth) {
     this.isAuth = isAuth;
@@ -41,7 +42,12 @@ export default class Store {
     this.setAuth(true);
     this.setUser(response.data.user);
   }
-  
+  setIsLoading(isLoading) {
+    this.isLoading = isLoading;
+  }
+  setRefreshed(refreshed) {
+    this.refreshed = refreshed;
+  }
   async login(email, password) {
     try {
       const response = await AuthService.login(email, password);
@@ -52,9 +58,9 @@ export default class Store {
     }
   }
 
-  async registration(login, email, password) {
+  async registration(email, password) {
     try {
-      const response = await AuthService.registration(login, email, password);
+      const response = await AuthService.registration(email, password);
       this.setToken(response);
       return true;
     } catch (e) {
@@ -75,6 +81,7 @@ export default class Store {
     }
   }
   async checkAuth() {
+    this.setIsLoading(true);
     try {
       const response = await axios.get(`${API_URL}/refresh`, {
         withCredentials: true,
@@ -83,7 +90,8 @@ export default class Store {
     } catch (e) {
       console.log(e.response?.data?.message);
     } finally {
-
+      this.setIsLoading(false);
+      this.setRefreshed(true);
     }
   }
 }

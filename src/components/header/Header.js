@@ -11,7 +11,6 @@ import { FormattedMessage } from "react-intl";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Switch from "@material-ui/core/Switch";
-import { useHistory } from "react-router";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Header() {
@@ -98,4 +97,4 @@ function Header() {
 }
 
 
-export default Header;
+export default observer(Header);

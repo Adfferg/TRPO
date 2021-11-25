@@ -3,5 +3,19 @@
     "header.ru":"ru",
     "header.en":"en",
     "header.login":"Login",
-    "header.registration":"Registration"
+    "header.registration":"Registration",
+    "header.logout":"Logout",
+    "loginform.title":"Sign in",
+    "loginform.password":"Password",
+    "loginform.emailaddress":"Email address",
+    "loginform.signin":"Sign in",
+    "loginform.forgotpassword":"Forgot password?",
+    "loginform.signup":"Sign up",
+    "registrationform.title":"Sign up",
+    "registrationform.login":"Login",
+    "registrationform.email":"Email",
+    "registrationform.password":"Password",
+    "registrationform.repeatpassword":"Repeat password",
+    "registrationform.signup":"Sign up",
+    "registrationform.signin":"Sign in"
 }
