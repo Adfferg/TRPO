@@ -8,19 +8,22 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import styles from "./styles";
-
+import { useNavigate } from "react-router";
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const { store } = useContext(Context);
     const classes = styles();
-
+    const navigate = useNavigate();
     async function login(event) {
         event.preventDefault();
         try {
           const res = await store.login(email, password);
-          if (!res){
+          if (res === true) {
+            navigate('../', { replace: true });
+          }
+           else {
             setError(res.response?.data?.message);
             setPassword("");
           }

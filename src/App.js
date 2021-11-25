@@ -3,7 +3,8 @@ import { Context } from ".";
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Header from "./components/header/Header";
@@ -55,6 +56,7 @@ function App() {
               <Route exact path="/login" element={<LoginForm/>}/>
               <Route exact path="/registration" element={<RegistrationForm/>}/>
               <Route exact path="/profile/:id" element={<UserProfile/>}></Route>
+              <Route exact path="/profile" element={<Navigate to = "/"/>}></Route>
             </Routes>
         </Paper>
       </Router>

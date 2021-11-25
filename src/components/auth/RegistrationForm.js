@@ -10,7 +10,7 @@ import Container from "@material-ui/core/Container";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles";
 import DualRing from "../loaders/DualRing";
-
+import { useNavigate } from "react-router";
 function RegistrationForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,6 +19,7 @@ function RegistrationForm() {
     const [registrationIsGoing, setRegistrationIsGoing] = useState(false);
     const { store } = useContext(Context);
     const classes = styles();
+    const navigate = useNavigate();
 
     const registrationFail = (e) => {
         setError(e);
@@ -30,7 +31,10 @@ function RegistrationForm() {
         if (password === repeatPassword) {
           setRegistrationIsGoing(true);
           const res = await store.registration(email, password);
-          if (!res) {
+          if (res === true) {
+            navigate('../', { replace: true });
+          }
+          else{
             registrationFail(res.response?.data?.message);
             setRegistrationIsGoing(false);
           }
