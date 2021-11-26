@@ -67,15 +67,40 @@ class UserController{
         }
     }
 
-    async getUsers(req,res,next){
+    async getUserInfo(req,res,next){
         try{
-            const users = await userService.getAllUsers();
-            res.json(users);
+            const {_id} = req.body
+            const response = await userService.getUserInfo(_id)
+            return res.json(response)
         }
         catch(e){
             next(e)
         }
     }
+
+    async setAvatar(req,res,next){
+        try{
+            const {email,data} = req.body
+            const response = await userService.setAvatar(email,data)
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async sendActivationLink(req,res,next){
+        try{
+            const {email} = req.body
+            await userService.sendActivationLink(email)
+
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+
 }
 
 module.exports = new UserController();

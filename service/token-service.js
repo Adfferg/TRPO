@@ -1,13 +1,22 @@
 const jwt = require('jsonwebtoken');
 const tokenModel = require('../models/token-model')
+const UserModel = require('../models/user-model')
 
 class TokenService{
     generateTokens(payload){
         const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET,{expiresIn:'30m'});
         const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET,{expiresIn:'30d'});
+        this.updateLoginTime(payload.email)
         return {accessToken,refreshToken}
     }
-
+    async updateLoginTime(email) {
+      const date = new Date();
+      const user = await UserModel.findOne({ email });
+      if (user) {
+        user.last_login = date.getTime();
+        await user.save();
+      }
+    }
     async saveToken(userId, refreshToken){
         const tokenData = await tokenModel.findOne({user:userId});
         if(tokenData){

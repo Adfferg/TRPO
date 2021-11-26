@@ -65,11 +65,38 @@ class UserService{
         return {...tokens, user:userDto}
     }
 
-    async getAllUsers(){
-        const users = await UserModel.find();
-        return users;
+    async getUserInfo(_id){
+        const user = await UserModel.findOne({_id})
+        if(!user){
+            throw ApiError.BadRequest('Пользователь не существует')
+        }
+        return user
     }
     
+    async setAvatar(email,data){
+        const user = await UserModel.findOne({email})
+        if(!user){
+            throw ApiError.BadRequest('Пользователь не существует')
+        }
+        user.avatar = data.secure_url
+        user.avatar_id=data.public_id
+        await user.save()
+        return true
+    }
+
+    async sendActivationLink(email){
+        const user = await UserModel.findOne({email})
+        if(!user){
+            throw ApiError.BadRequest('Пользователь не существует')
+        }
+        if(user.isActivated){
+            throw ApiError.BadRequest('Пользователь уже авторизован')
+        }
+        const activationLink = uuid.v4()
+        await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,user.login)
+        user.activationLink = activationLink
+        await user.save()
+    }
 }
 
 module.exports = new UserService();
