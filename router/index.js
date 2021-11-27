@@ -1,5 +1,6 @@
 const Router = require('express').Router;
 const userController = require('../controllers/user-controller')
+const reviewController = require('../controllers/review-controller')
 const router = new Router();
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
@@ -19,4 +20,8 @@ router.post('/set_avatar',userController.setAvatar)
 router.post('/cloudinary/destroy',cloudinaryController.destroy)
 router.post('/send_activationlink',userController.sendActivationLink)
 
+router.post('/reviews/create',reviewController.create)
+router.get('/reviews/get_reviews',reviewController.getReviews)
+router.post('/reviews/delete',reviewController.delete)
+router.post('/reviews/edit',reviewController.edit)
 module.exports = router

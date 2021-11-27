@@ -1,7 +1,6 @@
-POST http://localhost:5000/login
+POST http://localhost:5000/reviews/delete
 Content-type: application/json
 
 {
-    "email":"maxrusak01@gmail.com",
-    "password":"12345"
+    "id":"61a2591a7b5818dabfba7e01"
 }
