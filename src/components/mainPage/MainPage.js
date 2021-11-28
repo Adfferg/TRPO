@@ -1,10 +1,15 @@
 import React from "react";
-
-
+import Container from "@material-ui/core/Container";
+import styles from "./styles";
+import Grid from "@material-ui/core/Grid";
 function MainPage() {
-
+    const classes = styles();
     return(
-        <div>Main page</div>
+       <Container className = {classes.paper}>
+           <Grid container style ={{display:"flex"}} spacing={1}>
+                Main page
+           </Grid>
+       </Container>
     )
 }
 

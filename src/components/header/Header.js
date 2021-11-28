@@ -34,6 +34,16 @@ function Header() {
                 <FormattedMessage id="header.home" defaultMessage="Home" />
                 </Link>
                 <Grid item className={classes.options}>
+                  <Box>
+                    <Link to="/reviews" className={classes.link}>
+                        <Button color="inherit">
+                          <FormattedMessage
+                            id="header.reviews"
+                            defaultMessage="Reviews"
+                          />
+                        </Button>
+                    </Link>
+                  </Box>
                   <Grid className={classes.option}>
                     <FormattedMessage id="header.ru" defaultMessage="ru" />
                     <Switch

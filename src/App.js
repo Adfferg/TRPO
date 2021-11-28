@@ -17,6 +17,9 @@ import English from "./languages/en.json";
 import { observer } from "mobx-react-lite";
 import CubeLoader from "./components/loaders/CubeLoader";
 import UserProfile from "./components/user/UserProfile";
+import backgroundImage from "./resources/light.png"
+import Reviews from "./components/reviews/Reviews";
+
 function App() {
   const { store } = useContext(Context);
   
@@ -36,7 +39,6 @@ function App() {
   }, [store.locale]);
   
   if (store.isLoading) {
-    console.log('loading')
     return <CubeLoader></CubeLoader>;
   }
 
@@ -46,7 +48,7 @@ function App() {
         <Paper
           elevation={0}
           style={{
-            background: "#e6e6eb",
+            backgroundImage: `url(${backgroundImage})`,
             minHeight: "100vh",
             width: "100%",
           }}>
@@ -55,6 +57,7 @@ function App() {
               <Route exact path="/" element={<MainPage/>}/>
               <Route exact path="/login" element={<LoginForm/>}/>
               <Route exact path="/registration" element={<RegistrationForm/>}/>
+              <Route exact path="/reviews" element={<Reviews/>}/>
               <Route exact path="/profile/:id" element={<UserProfile/>}></Route>
               <Route exact path="/profile" element={<Navigate to = "/"/>}></Route>
             </Routes>

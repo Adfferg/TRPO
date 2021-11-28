@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import axios from "axios";
 import AuthService from "../services/AuthService";
 import { API_URL } from "../http";
-
+import ProfileService from "../services/ProfileService";
 export default class Store {
   user = {};
   isAuth = false;
@@ -92,6 +92,14 @@ export default class Store {
     } finally {
       this.setIsLoading(false);
       this.setRefreshed(true);
+    }
+  }
+
+  async sendActivationLink() {
+    try {
+      if (this.user) await ProfileService.sendActivationLink(this.user.email);
+    } catch (e) {
+      return e;
     }
   }
 }
