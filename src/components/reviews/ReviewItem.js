@@ -68,7 +68,8 @@ function ReviewItem(props) {
             <Typography onClick={() => {
                 navigate(`../profile/${review.user_id}`, { replace: false });
               }}
-              style={{ cursor: "pointer" }}>{review.user_email}{" "}{date}</Typography>
+
+            className={classes.text} style={{cursor: "pointer"}}>{review.user_email}{" "}{date}</Typography>
             {review.edited && ( 
               <FormattedMessage
                 id="reviews.edited"
@@ -101,12 +102,13 @@ function ReviewItem(props) {
                 multiline
                 fullWidth
                 value={newReview}
+                className={classes.text}
                 onChange={(e) => e.target.value.length < 501 && setNewReview(e.target.value)}>
               </TextField>
             </Grid>
           ):(
             <Grid className = {classes.grid}>
-              <Typography style={{wordWrap: "break-word",}}>
+              <Typography className={classes.text} style={{wordWrap: "break-word"}} >
                 {review.review}
               </Typography>
             </Grid>

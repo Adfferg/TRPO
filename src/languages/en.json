@@ -19,6 +19,8 @@
     "registrationform.repeatpassword":"Repeat password",
     "registrationform.signup":"Sign up",
     "registrationform.signin":"Sign in",
+    "registrationform.name":"Name",
+    "registrationform.surname":"Surname",
     "profile.notactivated":"Your account is not activated",
     "profile.sendlink":"Send activation link again",
     "profile.login":"Login",
@@ -36,5 +38,11 @@
     "reviews.review":"Reviews",
     "reviews.first_review":"Your review will be first!",
     "reviews.edited":"(edited)",
-    "reviews.error":"Empty field!"
+    "reviews.error":"Empty field!",
+    "reviews.no_reviews":"There are no reviews yet!",
+    "event.main_info":"Main info",
+    "event.venue":"Venue",
+    "event.staff":"Staff",
+    "event.food":"Food",
+    "event.event_program":"Event program"
 }

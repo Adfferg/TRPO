@@ -12,10 +12,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import Switch from "@material-ui/core/Switch";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
 
 function Header() {
   const { store } = useContext(Context);
-  
+  const classes = styles();
   const [language, setLanguage] = useState(
     store.locale === "ru-RU" ? false : true
   );
@@ -25,26 +26,25 @@ function Header() {
     store.setLocale();
   };
 
-  const classes = styles();
+  
     return(
       <Box className={classes.root}>
-            <AppBar position="static" className={classes.appbar}>
-              <Toolbar>
+            <AppBar position="static" className={classes.appbar} style={{background:"#8f3525"}}>
+              <Toolbar className={classes.text}>
                 <Link to="/" className={classes.title}>
-                <FormattedMessage id="header.home" defaultMessage="Home" />
+                  <HomeIcon size={"small"}></HomeIcon>
                 </Link>
                 <Grid item className={classes.options}>
                   <Box>
-                    <Link to="/reviews" className={classes.link}>
-                        <Button color="inherit">
-                          <FormattedMessage
-                            id="header.reviews"
-                            defaultMessage="Reviews"
-                          />
+                  <Link to="/reviews" className={classes.link} >
+                        <Button color="inherit" >
+                          <label className={classes.text}>
+                            <FormattedMessage
+                              id="header.reviews"
+                              defaultMessage="Reviews"/>
+                          </label>
                         </Button>
                     </Link>
-                  </Box>
-                  <Grid className={classes.option}>
                     <FormattedMessage id="header.ru" defaultMessage="ru" />
                     <Switch
                       checked={language}
@@ -55,25 +55,28 @@ function Header() {
                       inputProps={{ "aria-label": "secondary checkbox" }}
                     />
                     <FormattedMessage id="header.en" defaultMessage="en" />
-                  </Grid>
+                  </Box>
                 </Grid>
                 <Grid>
                   {!store.isAuth ? (
                     <Box>
                       <Link to="/login" className={classes.link}>
                         <Button color="inherit">
-                          <FormattedMessage
-                            id="header.login"
-                            defaultMessage="Login"
-                          />
+                          <label className={classes.text}>
+                            <FormattedMessage
+                              id="header.login"
+                              defaultMessage="Login"/>
+                          </label>
                         </Button>
                       </Link>
                       <Link to="/registration" className={classes.link}>
                         <Button color="inherit">
-                          <FormattedMessage
-                            id="header.registration"
-                            defaultMessage="Registration"
-                          />
+                          <label className={classes.text}>
+                            <FormattedMessage
+                              id="header.registration"
+                              defaultMessage="Registration"
+                            />
+                          </label>
                         </Button>
                       </Link>
                     </Box>
@@ -90,11 +93,13 @@ function Header() {
                         <Button
                           color="inherit"
                           onClick={() => store.logout()}
-                        >
-                          <FormattedMessage
-                            id="header.logout"
-                            defaultMessage="Logout"
-                          />
+                          className={classes.text}>
+                          <label className={classes.text}>
+                            <FormattedMessage
+                              id="header.logout"
+                              defaultMessage="Logout"
+                            />
+                          </label>
                         </Button>
                       </Link>
                     </Box>

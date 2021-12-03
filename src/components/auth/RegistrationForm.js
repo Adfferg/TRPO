@@ -12,6 +12,8 @@ import styles from "./styles";
 import DualRing from "../loaders/DualRing";
 import { useNavigate } from "react-router";
 function RegistrationForm() {
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -30,7 +32,7 @@ function RegistrationForm() {
         event.preventDefault();
         if (password === repeatPassword) {
           setRegistrationIsGoing(true);
-          const res = await store.registration(email, password);
+          const res = await store.registration(email, password,name,surname);
           if (res === true) {
             navigate('../', { replace: true });
           }
@@ -68,6 +70,40 @@ function RegistrationForm() {
                     autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="surname"
+                    label={
+                      <FormattedMessage
+                        id="registrationform.surname"
+                        defaultMessage="Surname"
+                      />
+                    }
+                    name="surname"
+                    value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    label={
+                      <FormattedMessage
+                        id="registrationform.name"
+                        defaultMessage="Name"
+                      />
+                    }
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>

@@ -58,9 +58,9 @@ export default class Store {
     }
   }
 
-  async registration(email, password) {
+  async registration(email, password,name,surname) {
     try {
-      const response = await AuthService.registration(email, password);
+      const response = await AuthService.registration(email, password,name,surname);
       this.setToken(response);
       return true;
     } catch (e) {

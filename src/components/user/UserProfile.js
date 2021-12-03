@@ -110,7 +110,7 @@ function UserProfile() {
                       ? URL.createObjectURL(newAvatar)
                       : avatar
                       ? avatar
-                      : null
+                      : 'https://windows10free.ru/uploads/posts/2017-04/1493287748_1487679899_icon-user-640x640.png'
                   }
                 ></img>
                 {store.id === id && <input {...getInputProps()}></input>}

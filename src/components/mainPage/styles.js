@@ -6,8 +6,35 @@ const styles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      background: "white",
-      border: "1px solid #FFA332",
+      background: theme.gridColor,
+      border: theme.border,
+      [theme.breakpoints.down("sm")]: {
+        marginTop: "2rem",
+      },
+      [theme.breakpoints.down("xs")]: {
+        marginTop: "1rem",
+      },
+    },
+    sign:{
+      display:"flex", 
+      flexDirection: "column",
+      justifyContent:"center",
+      [theme.breakpoints.down("sm")]: {
+        fontSize:"80%"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize:"60%"
+      },
+    },
+    button: {
+      margin: "3rem",
+      background: theme.headerColor,
+      [theme.breakpoints.down("sm")]: {
+        fontSize:"90%"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize:"80%"
+      },
     }
   }));
 

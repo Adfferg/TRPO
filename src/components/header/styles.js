@@ -18,13 +18,23 @@ const styles = makeStyles((theme) => ({
       color: "inherit",
     },
     options:{
-      marginRight:"5rem",
-      padding:"1rem",
       display:"flex",
     },
     option:{
       margin:"0 1rem",
+      [theme.breakpoints.down("sm")]: {
+        margin:"0"
+      },
     },
+    text:{
+      cursor: "pointer",
+      [theme.breakpoints.down("sm")]: {
+        fontSize:"80%"
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize:"60%"
+      },
+    }
   }));
 
   export default styles

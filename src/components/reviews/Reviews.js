@@ -101,7 +101,7 @@ function Reviews() {
     <Container >
       {store.isAuth&&(
       <Grid item xs={12} className={classes.mainGrid}>
-          <Typography component="h1" variant="h6" className={classes.label}>
+          <Typography component="h1" variant="h6" className={classes.headers}>
             <FormattedMessage
               id="reviews.new_review"
               defaultMessage="New review"
@@ -124,10 +124,10 @@ function Reviews() {
           </Grid>
           <Grid className={classes.error}>{error}</Grid>
       </Grid>)}
-      {reviews.length>0&& (
+      {reviews.length>0 ? (
       <Grid container className = {classes.mainGrid}>
             <Grid container item justifyContent="center">
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" className={classes.headers}>
               <FormattedMessage 
                 id="reviews.review"
                 defaultMessage="Reviews"/>
@@ -144,7 +144,16 @@ function Reviews() {
                 );
               })}
             
-      </Grid>)}
+      </Grid>):(
+        <Grid container className = {classes.mainGrid} style = {{justifyContent:"center"}}>
+         <Typography component="h1" variant="h6" className={classes.label}>
+         <FormattedMessage
+           id="reviews.no_reviews"
+           defaultMessage="There are no reviews yet"
+         />
+       </Typography>
+       </Grid>
+      )}
     </Container>
   );      
 }

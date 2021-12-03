@@ -19,6 +19,8 @@
     "registrationform.repeatpassword":"Повторите пароль",
     "registrationform.signup":"Регистрация",
     "registrationform.signin":"Войти",
+    "registrationform.name":"Имя",
+    "registrationform.surname":"Фамилия",
     "profile.notactivated":"Ваш аккаунт не активирован",
     "profile.sendlink":"Повторно отправить ссылку для активации",
     "profile.login":"Логин",
@@ -36,5 +38,11 @@
     "reviews.review":"Отзывы",
     "reviews.first_review":"Ваш отзыв будет первым!",
     "reviews.edited":"(изменено)",
-    "reviews.error":"Пустое поле!"
+    "reviews.error":"Пустое поле!",
+    "reviews.no_reviews":"Здесь ещё нет отзывов!",
+    "event.main_info":"Главная информация",
+    "event.venue":"Помещение",
+    "event.staff":"Персонал",
+    "event.food":"Еда",
+    "event.event_program":"Программа"
 }
