@@ -27,8 +27,6 @@ class ReviewService{
     }
     async edit(id, new_review){
         const review = await ReviewModel.findOne({_id:id});
-        console.log(id)
-        console.log(review)
         if(review){
             review.review = new_review;
             review.date = new Date().getTime();

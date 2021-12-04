@@ -37,9 +37,7 @@ class ReviewController{
         try{
         
             const {id, new_review} = req.body;
-            console.log(id)
-            const response = await reviewService.edit(id, new_review);
-            console.log(response)
+            const response = await reviewService.edit(id, new_review);  
             return res.json(response)
         }
         catch(e){
