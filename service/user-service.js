@@ -1,4 +1,5 @@
 const UserModel = require('../models/user-model')
+const ApplicationModel = require('../models/application-model')
 const bcrypt = require('bcrypt')
 const uuid = require('uuid')
 const mailService = require('./mail-service')
@@ -96,6 +97,18 @@ class UserService{
         await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,user.login)
         user.activationLink = activationLink
         await user.save()
+    }
+
+    async createApplication(name,email,phone){
+        const new_application = await ApplicationModel.create({
+            name,email,phone
+        })
+        return new_application
+    }
+
+    async getApplications(){
+        const applications = await ApplicationModel.find()
+        return applications
     }
 }
 

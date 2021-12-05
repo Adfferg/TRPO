@@ -100,6 +100,25 @@ class UserController{
         }
     }
 
+    async createApplication(req,res,next){
+        try{
+            const {name,email,phone} = req.body
+            const response = await userService.createApplication(name,email,phone)
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+    async getApplications(req,res,next){
+        try{
+            const response = await userService.getApplications()
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
 
 }
 

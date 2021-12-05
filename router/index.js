@@ -24,4 +24,8 @@ router.post('/reviews/create',reviewController.create)
 router.get('/reviews/get_reviews',reviewController.getReviews)
 router.post('/reviews/delete',reviewController.delete)
 router.post('/reviews/edit',reviewController.edit)
+
+router.post('/applications/create',userController.createApplication)
+router.get('/applications/get_applications',userController.getApplications)
+
 module.exports = router

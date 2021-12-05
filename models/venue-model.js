@@ -9,7 +9,9 @@ const VenueSchema = new Schema({
     open_time:{type:Date},
     close_time:{type:Date},
     image:{type:String,default:''},
-    image_id:{type:String,default:''}
+    image_id:{type:String,default:''},
+    lat: {type:String,required:true},
+    lng: {type:String,required:true},
 })
 
 module.exports = model('Venue',VenueSchema);
