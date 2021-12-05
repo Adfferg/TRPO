@@ -10,7 +10,7 @@ export default class Store {
   id = "";
   locale = "ru-RU";
   refreshed = false;
-  isLoading = false;
+  isLoading = true;
   constructor() {
     makeAutoObservable(this);
     if (localStorage.getItem("locale")) {
@@ -46,7 +46,9 @@ export default class Store {
     this.isLoading = isLoading;
   }
   setRefreshed(refreshed) {
+    this.setIsLoading(true);
     this.refreshed = refreshed;
+    this.setIsLoading(false);
   }
   async login(email, password) {
     try {
@@ -71,11 +73,13 @@ export default class Store {
   async logout() {
     try {
       await AuthService.logout();
+      this.setIsLoading(true);
       localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser({});
       this.setEmail("");
       this.setId("");
+      this.setIsLoading(false);
     } catch (e) {
       console.log(e.response?.data?.message);
     }

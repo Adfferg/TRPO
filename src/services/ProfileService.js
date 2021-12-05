@@ -13,4 +13,10 @@ export default class ProfileService{
     static async sendActivationLink(email){
         return api.post('/send_activationlink',{email})
     }
+    static async createApplication(name,email,phone){
+        return api.post('/applications/create',{name,email,phone})
+    }
+    static async getApplications(){
+        return api.get('/applications/get_applications')
+    }
 }

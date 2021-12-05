@@ -34,6 +34,8 @@
     "profile.searchbyname":"Поиск по имени",
     "profile.lastlogin":"Был в сети",
     "profile.isnotfound":"Пользователь не найден",
+    "profile.surname":"Фамилия",
+    "profile.name":"Имя",
     "reviews.new_review":"Новый отзыв",
     "reviews.review":"Отзывы",
     "reviews.first_review":"Ваш отзыв будет первым!",
@@ -44,5 +46,18 @@
     "event.venue":"Помещение",
     "event.staff":"Персонал",
     "event.food":"Еда",
-    "event.event_program":"Программа"
+    "event.event_program":"Программа",
+    "mainpage.name":"Имя",
+    "mainpage.email":"Email",
+    "mainpage.phone":"Телефон",
+    "mainpage.can_call_us":"МОЖЕТЕ ПОЗВОНИТЬ НАМ",
+    "mainpage.can_write_us":"МОЖЕТЕ НАПИСАТЬ НАМ",
+    "mainpage.fill_application":"МОЖЕТЕ ЗАПОЛНИТЬ ЗАЯВКУ",
+    "mainpage.leave_application":"Оставить заявку",
+    "mainpage.worktime":"Работаем по будням с 10 до 18",
+    "mainpage.map_message":"Мы здесь!",
+    "mainpage.find_us":"ВЫ МОЖЕТЕ НАЙТИ НАС ЗДЕСЬ",
+    "mainpage.leave_review":"Или оставить отзыв",
+    "mainpage.auth":"Авторизуйтесь, чтобы сделать заказ",
+    "mainpage.make_order":"Сделать заказ"
 }

@@ -34,6 +34,8 @@
     "profile.searchbyname":"Search by name",
     "profile.lastlogin":"Last login",
     "profile.isnotfound":"User is not found",
+    "profile.surname":"Surname",
+    "profile.name":"Name",
     "reviews.new_review":"New review",
     "reviews.review":"Reviews",
     "reviews.first_review":"Your review will be first!",
@@ -44,5 +46,18 @@
     "event.venue":"Venue",
     "event.staff":"Staff",
     "event.food":"Food",
-    "event.event_program":"Event program"
+    "event.event_program":"Event program",
+    "mainpage.name":"Name",
+    "mainpage.email":"Email",
+    "mainpage.phone":"Phone",
+    "mainpage.can_call_us":"YOU CAN CALL US",
+    "mainpage.can_write_us":"YOU CAN WRITE US",
+    "mainpage.fill_application":"YOU CAN FILL IN THE APPLICATION",
+    "mainpage.leave_application":"Leave application",
+    "mainpage.worktime":"We work on weekdays from 10 to 18",
+    "mainpage.map_message":"We are here!",
+    "mainpage.find_us":"YOU CAN FIND US HERE",
+    "mainpage.leave_review":"OR LEAVE REVIEW",
+    "mainpage.auth":"Log in to make an order",
+    "mainpage.make_order":"Make order"
 }

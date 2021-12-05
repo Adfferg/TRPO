@@ -26,6 +26,8 @@ function UserProfile() {
   const [avatar, setAvatar] = useState("");
   const [avatarId, setAvatarId] = useState("");
   const [email, setEmail] = useState("");
+  const [name,setName] = useState("");
+  const [surname,setSurname] = useState("");
   const [lastLogin, setLastLogin] = useState("");
   
   useEffect(() => {
@@ -37,7 +39,8 @@ function UserProfile() {
           setAvatar(response.data.avatar);
           setAvatarId(response.data.avatar_id);
           setEmail(response.data.email);
-          console.log(response.data.last_login)
+          setName(response.data.name)
+          setSurname(response.data.surname)
           const day = new Date(response.data.last_login)
             .toLocaleString()
             .split(",")[0];
@@ -125,8 +128,16 @@ function UserProfile() {
                   </Grid>
                 )}
               </Grid>
-              <Grid container item xs={12} sm={12} md={10} justifyContent="start">
+              <Grid container item xs={12} sm={12} md={10} justifyContent="flex-start">
                 <Box m={0.5}>
+                <Typography>
+                    <FormattedMessage id="profile.surname" defaultMessage="Surname" />:{" "}
+                    {surname}
+                  </Typography>
+                  <Typography>
+                    <FormattedMessage id="profile.name" defaultMessage="Name" />:{" "}
+                    {name}
+                  </Typography>
                   <Typography>
                     <FormattedMessage id="profile.email" defaultMessage="Email" />:{" "}
                     {email}

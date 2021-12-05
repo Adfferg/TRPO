@@ -31,6 +31,9 @@ function App() {
     if (store) {
       if (localStorage.getItem("token")) {
         store.checkAuth();
+      }
+      else {
+        store.setRefreshed(true);
       } 
     }
   }, [store]);

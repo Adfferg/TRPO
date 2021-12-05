@@ -34,6 +34,12 @@ const styles = makeStyles((theme) => ({
       [theme.breakpoints.down("xs")]: {
         fontSize:"60%"
       },
+    },
+    login_registration:{
+      display:"flex",
+      [theme.breakpoints.down("xs")]: {
+        flexDirection:"column"
+      },
     }
   }));
 

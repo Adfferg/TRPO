@@ -59,7 +59,7 @@ function Header() {
                 </Grid>
                 <Grid>
                   {!store.isAuth ? (
-                    <Box>
+                    <Box className={classes.login_registration}>
                       <Link to="/login" className={classes.link}>
                         <Button color="inherit">
                           <label className={classes.text}>

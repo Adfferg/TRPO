@@ -14,6 +14,11 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import HailIcon from '@mui/icons-material/Hail';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EventProgram from './EventProgram'
+import Food from './Food'
+import MainInfo from './MainInfo'
+import Staff from './Staff'
+import Venue from './Venue'
 function EventCreation() {
 
     const { store } = useContext(Context);
@@ -42,15 +47,15 @@ function EventCreation() {
     };
     const showComponent=()=>{
         if(value ==="Main info")
-            return (<div>Main info</div>)
+            return (<MainInfo/>)
         else if(value ==="Venue")
-            return (<div>Venue</div>)
+            return (<Venue/>)
         else if(value ==="Staff")
-            return (<div>Staff</div>)
+            return (<Staff/>)
         else if(value ==="Food")
-            return (<div>Food</div>)
+            return (<Food/>)
         else if(value ==="Event program")
-            return (<div>Event program</div>)
+            return (<EventProgram/>)
     }
 
     if (loading) {
@@ -59,7 +64,7 @@ function EventCreation() {
 
     return(
         <Container  className = {classes.paper}>
-            <Grid xs ={12} >
+            <Grid item xs ={12} >
               <Tabs 
 
                     value={value}
