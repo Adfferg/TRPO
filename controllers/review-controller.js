@@ -16,7 +16,6 @@ class ReviewController{
     async delete(req,res,next){
         try{
             const {id} = req.body;
-            console.log(id)
             const response = await reviewService.delete(id);
             return res.json(response)
         }

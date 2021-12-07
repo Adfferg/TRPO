@@ -1,6 +1,8 @@
-POST http://localhost:5000/reviews/delete
+POST http://localhost:5000/event/create-food
 Content-type: application/json
 
 {
-    "id":"61a2591a7b5818dabfba7e01"
+    "name":"Шашлык",
+    "price":"10",
+    "image":"https://res.cloudinary.com/adffergcloud/image/upload/v1638738452/pinchos_x5ge4t.jpg"
 }

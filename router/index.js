@@ -1,6 +1,7 @@
 const Router = require('express').Router;
 const userController = require('../controllers/user-controller')
 const reviewController = require('../controllers/review-controller')
+const eventController = require('../controllers/event-controller')
 const router = new Router();
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
@@ -28,4 +29,9 @@ router.post('/reviews/edit',reviewController.edit)
 router.post('/applications/create',userController.createApplication)
 router.get('/applications/get_applications',userController.getApplications)
 
+router.post('/event/get-info',eventController.getInfo)
+router.post('/event/create-venue',eventController.createVenue)
+router.post('/event/create-staff',eventController.createStaff)
+router.post('/event/create-food',eventController.createFood)
+router.post('/event/create', eventController.createEvent)
 module.exports = router

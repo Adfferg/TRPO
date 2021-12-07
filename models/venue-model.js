@@ -3,15 +3,11 @@ const {Schema, model} = require('mongoose');
 const VenueSchema = new Schema({
     name: {type:String,required:true},
     address: {type:String,required:true},
-    capacity: {type:Number, required:true},
     price: {type:Number, required:true},
-    activationLink: {type:String},
-    open_time:{type:Date},
-    close_time:{type:Date},
     image:{type:String,default:''},
-    image_id:{type:String,default:''},
-    lat: {type:String,required:true},
-    lng: {type:String,required:true},
+    lat: {type:Number,required:true},
+    lng: {type:Number,required:true},
+    type_of_events:{type:String,default:''}
 })
 
 module.exports = model('Venue',VenueSchema);

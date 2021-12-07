@@ -10,7 +10,8 @@ const UserSchema = new Schema({
     role:{type:String,ref:'Role'},
     last_login:{type:Date},
     avatar:{type:String,default:''},
-    avatar_id:{type:String,default:''}
+    avatar_id:{type:String,default:''},
+    blocked:{type:Boolean,default:false}
 })
 
 module.exports = model('User',UserSchema);
