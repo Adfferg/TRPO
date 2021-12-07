@@ -119,6 +119,7 @@ function MainPage() {
                                 variant="filled"
                                 margin="normal"
                                 required
+                                type="email"
                                 label={
                                     <FormattedMessage
                                     id="mainpage.email"

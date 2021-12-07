@@ -1,24 +1,23 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import Grid from "@material-ui/core/Grid";
-import StaffItem from './StaffItem'
 import { FormattedMessage } from "react-intl";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles";
 
-function Staff(props) {
+function Users(props) {
 
-    const {staff, setStaff} = props
+    const {users} = props
     const classes = styles();
     return(
             <Grid item xs ={12} >
                 <Grid container justifyContent="center">
                     <Typography className={classes.headers}><FormattedMessage id="event.staff" defaultMessage="Staff" /></Typography>
                 </Grid>
-                {staff.map((person)=>(
-                    <StaffItem key={person[0]._id} staff={person} setStaff={setStaff}></StaffItem>
+                {users.map((user)=>(
+                    <Grid>{user.email}</Grid>
                 ))}
             </Grid>
     )
 }
-export default observer(Staff);
+export default observer(Users);

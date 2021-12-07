@@ -3,15 +3,15 @@ import marker from '../../resources/marker.png'
 
 export default class CityPin extends PureComponent {
   render() {
-    const { size = 25, text } = this.props;
+    const { size = 25, text, venue, click } = this.props;
 
     return (
       <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
         <div>
-          <label>{text}</label>
+          {text&&(<label>{text}</label>)}
         </div>
         <div>
-          <img onClick ={()=>{}}style={{cursor:"pointer"}}height={size} alt ="" src={marker}></img>
+          <img onClick ={()=>{click&&click(venue)}}style={{cursor:"pointer"}}height={size} alt ="" src={marker}></img>
         </div>
       </div>
     );
