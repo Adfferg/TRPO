@@ -30,6 +30,22 @@ class MailService{
             `
         })
     }
+
+    async sendEventMail(to, name,surname, cost){
+        await this.transporter.sendMail({
+            from:process.env.SMTP_USER,
+            to,
+            subject:'You have succesfully ordered an event!',
+            text:'',
+            html:`
+            <div>
+                <h1>Hello, ${surname+" "+name}!</h1>
+                <h2>Thank you for ordering event in our agency! We will write you soon.</h2>
+                <h2>Cost for your event will be ${cost} r.</h2>
+            </div>
+            `
+        })
+    }
 }
 
 module.exports = new MailService();

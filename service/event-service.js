@@ -6,6 +6,7 @@ const EventModel = require('../models/event-model')
 const EventStaffModel = require('../models/event-staff-model')
 const EventFoodModel = require('../models/event-food-model')
 const ApiError = require('../exceptions/api-error')
+const mailService = require('./mail-service')
 
 class EventService{
     async getInfo(type){
@@ -53,12 +54,23 @@ class EventService{
             throw ApiError.BadRequest('Неизвестная ошибка')
         }
         staffIds.forEach(async(element) => {
-            await EventStaffModel.create({staff:element,event:event })
+            await EventStaffModel.create({staff:element[0]._id,event:event._id })
         });
+        console.log(foodIds)
         foodIds.forEach(async(food) => {
-            await EventFoodModel.create({food:food[0], event:event, amount:food[1]})
+            console.log(food[0])
+            await EventFoodModel.create({food:food[0]._id, event:event._id, amount:food[1]})
         });
+        await mailService.sendEventMail(user.email, user.name,user.surname, event.total_price)
         return true
+    }
+    async getUserEvents(email){
+        const user = await UserModel.findOne({email})
+        if(!user){
+            throw ApiError.BadRequest('Такого пользователя не существует')
+        }
+        const events = await EventModel.find({user:user._id}).populate('venue')
+        return events
     }
 }
 

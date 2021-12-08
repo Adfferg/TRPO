@@ -120,6 +120,39 @@ class UserController{
         }
     }
 
+    async getUsers(req,res,next){
+        try{
+            const response = await userService.getUsers()
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+    
+    async banUser(req,res,next){
+        try{
+            const {email} = req.body
+            const response = await userService. banUser(email)
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+    async deleteApplication(req,res,next){
+        try{
+            const {id} = req.body;
+            const response = await userService.deleteApplication(id);
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
 }
+
+
+
 
 module.exports = new UserController();

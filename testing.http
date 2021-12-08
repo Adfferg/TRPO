@@ -1,8 +1,6 @@
-POST http://localhost:5000/event/create-food
+POST http://localhost:5000/event/user-events
 Content-type: application/json
 
 {
-    "name":"Шашлык",
-    "price":"10",
-    "image":"https://res.cloudinary.com/adffergcloud/image/upload/v1638738452/pinchos_x5ge4t.jpg"
+    "email":"maxrusak01@gmail.com"
 }

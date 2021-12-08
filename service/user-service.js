@@ -6,6 +6,7 @@ const mailService = require('./mail-service')
 const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dto') 
 const ApiError = require('../exceptions/api-error')
+const tokenModel = require('../models/token-model')
 
 class UserService{
     async registration(email,password,name,surname){
@@ -39,6 +40,9 @@ class UserService{
         const isPassEquals = await bcrypt.compare(password,user.password)
         if(!isPassEquals){
             throw ApiError.BadRequest('Неверный логин или пароль')
+        }
+        if(user.blocked){
+            throw ApiError.BadRequest('Пользователь заблокирован')
         }
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto});
@@ -109,6 +113,34 @@ class UserService{
     async getApplications(){
         const applications = await ApplicationModel.find()
         return applications
+    }
+    async getUsers(){
+        const users = await UserModel.find();
+        return users;
+    }
+    async banUser(email){
+        const user = await UserModel.findOne({email})
+        if(!user){
+            throw ApiError.BadRequest('Пользователь не существует')
+        }
+        user.blocked = !user.blocked
+        await user.save();
+        if(!user.blocked){
+            const refreshToken = await tokenModel.findOne(user);
+            if(refreshToken){
+                await tokenModel.deleteOne({ refreshToken });
+            }
+        }
+        return true;
+    }
+    
+    async deleteApplication(id){
+        const application = await ApplicationModel.findOne({_id:id});
+        if(application){
+            const res = await application.remove()
+            return res
+        }
+        return false;
     }
 }
 

@@ -54,6 +54,16 @@ class EventController{
             next(e)
         }
     }
+    async getUserEvents(req,res,next){
+        try{
+            const{email} = req.body
+            const response = await eventService.getUserEvents(email)
+            return res.json(response)
+        }
+        catch(e){
+            next(e)
+        }
+    }
 }
 
 module.exports = new EventController();
