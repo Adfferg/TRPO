@@ -40,6 +40,7 @@
     "profile.applications":"Заявки",
     "profile.users":"Пользователи",
     "profile.user_not_found":"Пользователь не найден",
+    "profile.no_events":"У вас ещё нет ивентов!",
     "reviews.new_review":"Новый отзыв",
     "reviews.review":"Отзывы",
     "reviews.first_review":"Ваш отзыв будет первым!",
@@ -69,6 +70,7 @@
     "event.wedding":"Свадьба",
     "event.birthday":"День рождения",
     "event.graduation":"Выпускной",
+    "event.error":"Вы не выбрали дату!",
     "mainpage.name":"Имя",
     "mainpage.email":"Email",
     "mainpage.phone":"Телефон",
@@ -81,5 +83,6 @@
     "mainpage.find_us":"ВЫ МОЖЕТЕ НАЙТИ НАС ЗДЕСЬ",
     "mainpage.leave_review":"Или оставить отзыв",
     "mainpage.auth":"Авторизуйтесь, чтобы сделать заказ",
-    "mainpage.make_order":"Сделать заказ"
+    "mainpage.make_order":"Сделать заказ",
+    "mainpage.not_activated":"Аккаунт не активирован"
 }

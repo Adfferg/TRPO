@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { observer } from "mobx-react-lite";
 import Grid from "@material-ui/core/Grid";
 import { FormattedMessage } from "react-intl";
@@ -8,8 +8,17 @@ import Button from "@material-ui/core/Button";
 import DualRing from "../loaders/DualRing";
 
 function  EventSummary(props) {
-    const {chosenVenue, staff, food, totalPrice,hours, changeShowWindow, tryingToCreate} = props
-
+    const {chosenVenue, staff, food, totalPrice,hours, changeShowWindow, tryingToCreate,date} = props
+    const [error,setError] = useState("")
+    const createEvent =()=>{
+        if(!date){
+            setError( <FormattedMessage id="event.error" defaultMessage="You didn't choose date!" />)
+        }
+        else{
+            setError("")
+            changeShowWindow(true)
+        }
+    }
     const classes = styles();
     return(
         <Grid container item xs ={12} style={{display:"flex", flexDirection:"column", alignItems:"center", padding:"1rem"}}>
@@ -46,10 +55,11 @@ function  EventSummary(props) {
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick ={()=>{changeShowWindow(true)}}
+                onClick ={()=>{createEvent()}}
                 className={classes.button}>
                      <FormattedMessage id="mainpage.make_order" defaultMessage="Make order"/>
                 </Button>))}
+                <Typography style={{color:"red"}}>{error}</Typography>
             </Grid>
     )
 }

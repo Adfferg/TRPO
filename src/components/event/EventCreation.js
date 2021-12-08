@@ -221,7 +221,7 @@ function EventCreation() {
         else if(value ==="4")
             return (<Food food={food} setFood={changeFood}/>)
         else if(value ==="5")
-            return (<EventSummary chosenVenue={chosenVenue} staff={staff} food={food} totalPrice={totalPrice} hours={hours} changeShowWindow={changeShowWindow} tryingToCreate={tryingToCreate}/>)
+            return (<EventSummary chosenVenue={chosenVenue} staff={staff} food={food} totalPrice={totalPrice} hours={hours} changeShowWindow={changeShowWindow} tryingToCreate={tryingToCreate} date={date}/>)
     }
 
     if (loading) {

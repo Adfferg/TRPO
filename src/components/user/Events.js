@@ -9,7 +9,7 @@ function Events(props) {
 
     const {events} = props
     const classes = styles();
-
+    console.log(events)
     const getEventDate=(start_time)=>{
         const day = new Date(start_time)
             .toLocaleString()
@@ -24,18 +24,20 @@ function Events(props) {
     return(
             <Grid item xs ={12} style={{display:"flex", flexDirection:"column", padding:"1rem", alignItems:"center"}}>
                  <Typography className={classes.headers}><FormattedMessage id="profile.events" defaultMessage="My events"/></Typography>
+                 {events.length>0?(
+                    <Grid item xs={12} style={{width:"100%"}}>
                     <Grid item xs={12} className={classes.eventGrid}>
-                        <Grid className={classes.eventSmallerGrid1}>
-                            <FormattedMessage id="event.venue" defaultMessage="Venue"/>
-                        </Grid>
-                        <Grid className={classes.eventSmallerGrid2}>
-                            <FormattedMessage id="event.date" defaultMessage="Date"/>
-                        </Grid>
-                        <Grid className={classes.eventSmallerGrid3}>
-                            <FormattedMessage id="event.total_cost" defaultMessage="Total cost"/>
-                        </Grid>
-                    </Grid>
-                    {events.length>0 && events.map((event)=>(
+                      <Grid className={classes.eventSmallerGrid1}>
+                          <FormattedMessage id="event.venue" defaultMessage="Venue"/>
+                      </Grid>
+                      <Grid className={classes.eventSmallerGrid2}>
+                          <FormattedMessage id="event.date" defaultMessage="Date"/>
+                      </Grid>
+                      <Grid className={classes.eventSmallerGrid3}>
+                          <FormattedMessage id="event.total_cost" defaultMessage="Total cost"/>
+                      </Grid>
+                  </Grid>
+                  {events.map((event)=>(
                     <Grid item xs={12} key={event._id} className={classes.eventGrid}>
                         <Grid className={classes.eventSmallerGrid1}>
                             {event.venue.name}
@@ -47,7 +49,12 @@ function Events(props) {
                             {event.total_price}<FormattedMessage id="event.r" defaultMessage="r."/>
                         </Grid>
                     </Grid>
-                ))}
+                  ))}
+                  </Grid>
+                 ):(
+                     <Grid> <Typography className={classes.headers}><FormattedMessage id="profile.no_events" defaultMessage="You have no events yet!"/></Typography></Grid>
+                 )}
+                   
             </Grid>
     )
 }

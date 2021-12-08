@@ -179,6 +179,7 @@ function MainPage() {
                 <Maps lat ={53.912091} lng = {27.594754} text={<FormattedMessage id="mainpage.map_message" defaultMessage="We are here!"/>}/>
             </Grid>
             {store.isAuth?(
+                !store.isActivated?(
             <Button
                 variant="contained"
                 color="primary"
@@ -187,7 +188,11 @@ function MainPage() {
                 <FormattedMessage
                     id="mainpage.make_order"
                     defaultMessage="Make order"/>
-            </Button>
+            </Button>):(<Box className={classes.auth_to_make_order} onClick={()=>{navigate(`/profile/${store.id}`, { replace: true });}}>
+                        <FormattedMessage
+                            id="mainpage.not_activated"
+                            defaultMessage="Account isn't activated"/>
+                </Box>)
             ):(
                 <Box className={classes.auth_to_make_order} onClick={()=>{goToLogin()}}>
                         <FormattedMessage

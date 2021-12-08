@@ -40,6 +40,7 @@
     "profile.applications":"Applications",
     "profile.users":"Users",
     "profile.user_not_found":"User not found",
+    "profile.no_events":"You have no events yet!",
     "reviews.new_review":"New review",
     "reviews.review":"Reviews",
     "reviews.first_review":"Your review will be first!",
@@ -69,6 +70,7 @@
     "event.wedding":"Wedding",
     "event.birthday":"Birth day",
     "event.graduation":"Graduation",
+    "event.error":"You didn't choose date!",
     "mainpage.name":"Name",
     "mainpage.email":"Email",
     "mainpage.phone":"Phone",
@@ -81,5 +83,6 @@
     "mainpage.find_us":"YOU CAN FIND US HERE",
     "mainpage.leave_review":"OR LEAVE REVIEW",
     "mainpage.auth":"Log in to make an order",
-    "mainpage.make_order":"Make order"
+    "mainpage.make_order":"Make order",
+    "mainpage.not_activated":"Account isn't activated"
 }
