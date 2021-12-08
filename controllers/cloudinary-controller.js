@@ -1,5 +1,5 @@
 const ApiError = require('../exceptions/api-error')
-const cloudinaryService = require('../Service/cloudinary-service')
+const cloudinaryService = require('../service/cloudinary-service')
 class CloudinaryController{
     async destroy(req,res,next){
         try{

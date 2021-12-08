@@ -1,5 +1,5 @@
 const ApiError = require('../exceptions/api-error')
-const eventService = require('../Service/event-service')
+const eventService = require('../service/event-service')
 
 class EventController{
 
@@ -25,8 +25,8 @@ class EventController{
     }
     async createVenue(req,res,next){
         try{
-            const {name, address, price, lat, lng,image,image_id} = req.body;
-            const response = await eventService.createVenue(name, address, price, lat, lng,image,image_id)
+            const {name, address, price, lat, lng,image,image_id,type_of_events} = req.body;
+            const response = await eventService.createVenue(name, address, price, lat, lng,image,image_id,type_of_events)
             return res.json(response)
         }
         catch(e){
@@ -36,8 +36,8 @@ class EventController{
  
     async createStaff(req,res,next){
         try{
-            const {name, salary, avatar, avatar_id,description} = req.body;
-            const response = await eventService.createStaff(name, salary, avatar, avatar_id,description)
+            const {name, salary, avatar, avatar_id,description,type_of_events} = req.body;
+            const response = await eventService.createStaff(name, salary, avatar, avatar_id,description,type_of_events)
             return res.json(response)
         }
         catch(e){

@@ -1,6 +1,10 @@
-POST http://localhost:5000/event/user-events
+POST http://localhost:5000/event/create-staff
 Content-type: application/json
 
 {
-    "email":"maxrusak01@gmail.com"
+    "name":"Дмитрий Губич",
+    "salary":"20",
+    "avatar":"https://res.cloudinary.com/adffergcloud/image/upload/v1638971439/gubich_zgpphi.jpg",
+    "description":"1",
+    "type_of_events":"wedding,birthday,graduation"
 }

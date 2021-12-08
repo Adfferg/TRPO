@@ -16,16 +16,16 @@ class EventService{
         return {venues, staff, food}
     }
 
-    async createVenue(name, address, price, lat, lng,image,image_id){
-        const venue = await VenuewModel.create({
-            name, address, price, lat, lng,image,image_id
+    async createVenue(name, address, price, lat, lng,image,image_id,type_of_events){
+        const venue = await VenueModel.create({
+            name, address, price, lat, lng,image,image_id,type_of_events
         })
         return venue;
     }
 
-    async createStaff(name, salary, avatar, avatar_id,description){
+    async createStaff(name, salary, avatar, avatar_id,description,type_of_events){
         const venue = await StaffModel.create({
-            name, salary, avatar, avatar_id,description
+            name, salary, avatar, avatar_id,description,type_of_events
         })
         return venue;
     }
@@ -65,11 +65,11 @@ class EventService{
         return true
     }
     async getUserEvents(email){
-        const user = await UserModel.findOne({email})
+        const user = await UserModel.findOne({email:email})
         if(!user){
             throw ApiError.BadRequest('Такого пользователя не существует')
         }
-        const events = await EventModel.find({user:user._id}).populate('venue')
+        const events = await EventModel.find({customer:user._id}).populate('venue')
         return events
     }
 }

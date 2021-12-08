@@ -5,7 +5,7 @@ const eventController = require('../controllers/event-controller')
 const router = new Router();
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
-const cloudinaryController = require('../Controllers/cloudinary-controller')
+const cloudinaryController = require('../controllers/cloudinary-controller')
 
 router.post('/registration',
     body('email').isEmail(),
@@ -33,9 +33,9 @@ router.get('/applications/get_applications',userController.getApplications)
 router.post('/applications/delete',userController.deleteApplication)
 
 router.post('/event/get-info',authMiddleware,eventController.getInfo)
-router.post('/event/create-venue',authMiddleware,eventController.createVenue)
-router.post('/event/create-staff',authMiddleware,eventController.createStaff)
-router.post('/event/create-food',authMiddleware,eventController.createFood)
+router.post('/event/create-venue',eventController.createVenue)
+router.post('/event/create-staff',eventController.createStaff)
+router.post('/event/create-food',eventController.createFood)
 router.post('/event/create',authMiddleware, eventController.createEvent)
 router.post('/event/user-events', eventController.getUserEvents)
 module.exports = router

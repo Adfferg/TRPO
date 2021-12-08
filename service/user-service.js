@@ -17,7 +17,7 @@ class UserService{
         const hashPassword = await bcrypt.hash(password,3);
         const activationLink = uuid.v4();
         const user = await UserModel.create({email, password:hashPassword,activationLink,name,surname});
-        await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,name,surname);
+        await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,user.name,user.surname);
         const userDto = new UserDto(user);
         const tokens = tokenService.generateTokens({...userDto});
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
@@ -98,7 +98,7 @@ class UserService{
             throw ApiError.BadRequest('Пользователь уже авторизован')
         }
         const activationLink = uuid.v4()
-        await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,user.login)
+        await mailService.sendActivationMail(email,`${process.env.API_URL}/activate/${activationLink}`,user.name,user.surname)
         user.activationLink = activationLink
         await user.save()
     }

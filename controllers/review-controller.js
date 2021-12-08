@@ -1,5 +1,5 @@
 const ApiError = require('../exceptions/api-error')
-const reviewService = require('../Service/review-service')
+const reviewService = require('../service/review-service')
 
 class ReviewController{
 
