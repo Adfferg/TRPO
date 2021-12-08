@@ -11,6 +11,8 @@ import { FormattedMessage } from "react-intl";
 import styles from "./styles";
 import DualRing from "../loaders/DualRing";
 import { useNavigate } from "react-router";
+import BadSymbols from '../../resources/BadSymbols'
+
 function RegistrationForm() {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
@@ -42,7 +44,20 @@ function RegistrationForm() {
           }
         } else registrationFail("Password mismatch");
       }
-
+    const changeSurname = (new_surname)=>{
+      let badSymbols = BadSymbols.values
+      if (badSymbols.some(v => new_surname.includes(v))) {
+        return;
+      }
+      setSurname(new_surname)
+    }
+    const changeName = (new_name)=>{
+      let badSymbols = BadSymbols.values
+      if (badSymbols.some(v => new_name.includes(v))) {
+        return;
+      }
+      setName(new_name)
+    }
     return(
         <Container component="main" maxWidth="xs">
           <div className={classes.paper}>
@@ -68,6 +83,7 @@ function RegistrationForm() {
                     }
                     name="email"
                     autoComplete="email"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -78,6 +94,7 @@ function RegistrationForm() {
                     required
                     fullWidth
                     id="surname"
+                    type='text'
                     label={
                       <FormattedMessage
                         id="registrationform.surname"
@@ -86,7 +103,7 @@ function RegistrationForm() {
                     }
                     name="surname"
                     value={surname}
-                    onChange={(e) => setSurname(e.target.value)}
+                    onChange={(e) => changeSurname(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -95,6 +112,7 @@ function RegistrationForm() {
                     required
                     fullWidth
                     id="name"
+                    type='text'
                     label={
                       <FormattedMessage
                         id="registrationform.name"
@@ -103,7 +121,7 @@ function RegistrationForm() {
                     }
                     name="name"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => changeName(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>

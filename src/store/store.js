@@ -8,6 +8,7 @@ export default class Store {
   isAuth = false;
   email = "";
   id = "";
+  isAdmin = false;
   locale = "ru-RU";
   refreshed = false;
   isLoading = true;
@@ -35,10 +36,14 @@ export default class Store {
   setId(id) {
     this.id = id;
   }
+  setAdmin(isAdmin){
+    this.isAdmin = isAdmin
+  }
   setToken(response) {
     localStorage.setItem("token", response.data.accessToken);
     this.setEmail(response.data.user.email);
     this.setId(response.data.user.id);
+    this.setAdmin(response.data.user.role==='ADMIN'?true:false)
     this.setAuth(true);
     this.setUser(response.data.user);
   }

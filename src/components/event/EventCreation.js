@@ -48,6 +48,9 @@ function EventCreation() {
         let cleanupFunction = false;
         async function getDataFromServer() {
           try {
+            if(!store.isAuth){
+              navigate(`/`, { replace: true });
+            }
             if (!cleanupFunction) {
               const info = await EventService.getInfo(typeOfEvent);
               if(info){
@@ -74,7 +77,7 @@ function EventCreation() {
         getDataFromServer();
     
         return () => (cleanupFunction = true);
-      }, [store, typeOfEvent]);
+      }, [navigate, store, typeOfEvent]);
 
 
     const handleChange = (event, newValue) => {
@@ -185,7 +188,7 @@ function EventCreation() {
         const foodIds = []
         food.forEach((item)=>{
           if(item[1]>0){
-            foodIds.push([item, item[1]])
+            foodIds.push(item)
           }
         })
         const mainInfo ={
@@ -197,7 +200,6 @@ function EventCreation() {
           type:typeOfEvent
         }
         const response = await EventService.createEvent(chosenVenue._id,staffIds,foodIds,mainInfo)
-        console.log(response)
         setOpenWindow(false)
         setTryingToCreate(false)
         if(response){

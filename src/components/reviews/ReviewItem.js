@@ -63,7 +63,7 @@ function ReviewItem(props) {
   }
 
   return(
-        <Grid item className = {classes.grid} style={{background:"#ececec"}}>
+        <Grid item className = {classes.grid} style={{background:"rgb(238, 238, 245)"}}>
           <Grid style={{display:"flex"}}>
             <Typography onClick={() => {
                 navigate(`../profile/${review.user_id}`, { replace: false });
@@ -75,7 +75,7 @@ function ReviewItem(props) {
                 id="reviews.edited"
                 defaultMessage="edited"
               />)}
-            {store.id === review.user_id&&(
+            {(store.id === review.user_id|| store.user.role === 'ADMIN') &&(
               isEdit?(
                 <Grid style={{display:"flex"}}>
                   <IconButton size={"small"} onClick ={()=>{editReview()}}> 

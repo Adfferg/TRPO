@@ -14,8 +14,11 @@ import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import ProfileService from "../../services/ProfileService";
+import EventService from "../../services/EventService"
 import CloudinaryService from "../../services/CloudinaryService";
 import { useParams} from "react-router-dom";
+import AdditionalData from './AdditionalData'
+import { useNavigate } from "react-router";
 
 function UserProfile() {
   const { id } = useParams();
@@ -29,7 +32,12 @@ function UserProfile() {
   const [name,setName] = useState("");
   const [surname,setSurname] = useState("");
   const [lastLogin, setLastLogin] = useState("");
-  
+  const [role, setRole] = useState("")
+  const [users, setUsers] = useState("")
+  const [applications,setApplications] = useState("")
+  const [events, setEvents] = useState("")
+  const navigate = useNavigate()
+
   useEffect(() => {
     let cleanupFunction = false;
     async function getDataFromServer() {
@@ -49,11 +57,30 @@ function UserProfile() {
             .split(",")[1];
           const date = minutes + " " + day;
           setLastLogin(date);
+          setRole(response.data.role)
         }
+        if(response.data.role === 'ADMIN'){
+          const allUsers = await ProfileService.getUsers();
+          if(allUsers){
+            setUsers(allUsers.data)
+          }
+          const allAplications = await ProfileService.getApplications();
+          if(allAplications){
+            setApplications(allAplications.data)
+          }
+        }
+          const userEvents = await EventService.getUserEvents(response.data.email)
+          if(userEvents){
+            setEvents(userEvents.data)
+          }
       } catch (e) {
         console.log(e)
+        if(e.response.status === 400){
+          navigate(`/user-not-found`, { replace: true });
+        }
       } finally {
         if (!cleanupFunction) setLoading(false);
+ 
       }
     }
 
@@ -61,7 +88,7 @@ function UserProfile() {
       getDataFromServer();
     }
     return () => (cleanupFunction = true);
-  }, [store, id]);
+  }, [store, id, navigate, email]);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -93,6 +120,29 @@ function UserProfile() {
   function diclineAvatar() {
     setNewAvatar("");
   }
+
+  const banUser = async(email)=>{
+    const response = await ProfileService.banUser(email)
+    if(response){
+      let temp = []
+      users.forEach((user)=>{
+        if(user.email === email){
+          user.blocked = !user.blocked
+        }
+        temp.push(user)
+      })
+      setUsers(temp)
+    }
+  }
+
+  const deleteApplication = async(id)=>{
+    const response = await ProfileService.deleteApplication(id);
+    if(response){
+      const temp = applications.filter(application => application._id !== id);
+      setApplications(temp)
+    }
+
+  }
   if (loading) {
     return <CubeLoader></CubeLoader>;
   }
@@ -101,7 +151,7 @@ function UserProfile() {
     <Container>
           <Container className={classes.userInfo}>
             <Grid container>
-              <Grid container item xs={12} sm={12} md={2} justifyContent="center">
+              <Grid container item xs={12} sm={12} md={2} justifyContent="flex-start">
                 <img
                   {...getRootProps()}
                   className={`${classes.avatar} ${
@@ -180,7 +230,7 @@ function UserProfile() {
                 </Grid>
               </Container>
             ) : (
-              ""
+              <AdditionalData users={users} applications={applications} banUser={banUser} role={role} events={events} deleteApplication={deleteApplication}></AdditionalData>
             )
           ) : (
             ""

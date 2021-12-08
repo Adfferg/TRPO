@@ -12,6 +12,7 @@ import { FormattedMessage } from "react-intl";
 import { Context } from "../../index";
 import CubeLoader from "../loaders/CubeLoader";
 import ProfileService from "../../services/ProfileService";
+import BadSymbols from '../../resources/BadSymbols'
 
 function MainPage() {
     const { store } = useContext(Context);
@@ -36,7 +37,6 @@ function MainPage() {
                 setTryingToCreateApplication(true);
                 const response = await ProfileService.createApplication(name,email,phone);
                 if(response){
-                    console.log(response)
                     setName('');
                     setEmail('');
                     setPhone('');
@@ -49,6 +49,19 @@ function MainPage() {
                 setTryingToCreateApplication(false);
               }
            }
+    }
+    const changeName = (new_name)=>{
+        let badSymbols = BadSymbols.values
+        if (badSymbols.some(v => new_name.includes(v))) {
+          return;
+        }
+        setName(new_name)
+    }
+
+    const changePhone=(new_phone)=>{
+        if(new_phone>=0){
+            setPhone(new_phone)
+        }
     }
 
     if (store.isLoading) {
@@ -114,7 +127,7 @@ function MainPage() {
                                 style={{background:"white"}}
                                 id="name"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}/>
+                                onChange={(e) => changeName(e.target.value)}/>
                             <TextField
                                 variant="filled"
                                 margin="normal"
@@ -133,6 +146,7 @@ function MainPage() {
                                 variant="filled"
                                 margin="normal"
                                 required
+                                type="number"
                                 label={
                                     <FormattedMessage
                                         id="mainpage.phone"
@@ -141,7 +155,7 @@ function MainPage() {
                                 style={{background:"white"}}
                                 id="phone"
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)}/>
+                                onChange={(e) => changePhone(e.target.value)}/>
                             <Button
                                 variant="contained"
                                 color="primary"

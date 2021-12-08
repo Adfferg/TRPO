@@ -7,4 +7,7 @@ export default class EventService{
     static async createEvent(venueId, staffIds, foodIds, mainInfo){
         return api.post('/event/create',{venueId, staffIds, foodIds, mainInfo})
     }
+    static async getUserEvents(email){
+        return api.post('/event/user-events',{email})
+    }
 }

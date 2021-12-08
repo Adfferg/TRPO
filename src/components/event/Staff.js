@@ -15,7 +15,7 @@ function Staff(props) {
                 <Grid container justifyContent="center">
                     <Typography className={classes.headers}><FormattedMessage id="event.staff" defaultMessage="Staff" /></Typography>
                 </Grid>
-                {staff.map((person)=>(
+                {staff&&staff.map((person)=>(
                     <StaffItem key={person[0]._id} staff={person} setStaff={setStaff}></StaffItem>
                 ))}
             </Grid>

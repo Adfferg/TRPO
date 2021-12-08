@@ -19,4 +19,13 @@ export default class ProfileService{
     static async getApplications(){
         return api.get('/applications/get_applications')
     }
+    static async deleteApplication(id){
+        return api.post('/applications/delete',{id})
+    }
+    static async getUsers(){
+        return api.get('/get_users')
+    }
+    static async banUser(email){
+        return api.post('/ban_user',{email})
+    }
 }

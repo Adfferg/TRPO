@@ -16,7 +16,7 @@ function Food(props) {
             <Typography className={classes.headers}><FormattedMessage id="event.food" defaultMessage="Food" /></Typography>
         </Grid>
         <Grid container style={{display:"flex"}}>
-            {food.map((foodItem)=>(
+            {food&&food.map((foodItem)=>(
                 <Grid  key={foodItem[0]._id} item md ={3} xs = {4}>
                     <FoodItem  food={foodItem} setFood={setFood}></FoodItem>
                 </Grid>

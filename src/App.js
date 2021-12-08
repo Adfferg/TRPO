@@ -21,6 +21,7 @@ import backgroundImage from "./resources/light.png"
 import Reviews from "./components/reviews/Reviews";
 import { ThemeProvider, createTheme  } from "@material-ui/core/styles";
 import EventCreation from "./components/event/EventCreation";
+import UserNotFound from './components/user/UserNotFound';
 
 function App() {
   const { store } = useContext(Context);
@@ -78,6 +79,7 @@ function App() {
                 <Route exact path="/profile/:id" element={<UserProfile/>}></Route>
                 <Route exact path="/profile" element={<Navigate to = "/"/>}></Route>
                 <Route exact path="/make-order" element={<EventCreation/>}></Route>
+                <Route exact path="/user-not-found" element={<UserNotFound/>}></Route>
               </Routes>
           </Paper>
         </Router>
